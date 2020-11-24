@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1602746184 source:d:\19051135\c\c++\joseph\main.cpp
+	<cstdio>
+	<cstdlib>
+	"CircleList.h"
+
+1602745214 d:\19051135\c\c++\joseph\circlelist.h
+

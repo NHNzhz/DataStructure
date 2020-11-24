@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1604557680 source:d:\19051135\c\c++\parkinglot\main.cpp
+	"Queue.h"
+	"Stack.h"
+	<cstdio>
+	<iostream>
+	<string>
+
+1604556951 d:\19051135\c\c++\parkinglot\queue.h
+	"Car.h"
+
+1604555834 d:\19051135\c\c++\parkinglot\car.h
+	<string>
+
+1604555180 d:\19051135\c\c++\parkinglot\stack.h
+	"Car.h"
+
