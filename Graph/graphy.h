@@ -1,3 +1,4 @@
+
 #ifndef GRAPHY_H_INCLUDED
 #define GRAPHY_H_INCLUDED
 #define max_vexnum 30
@@ -34,7 +35,7 @@ int Convert(char *num){
 }
 
 void TopoSortAve(Graph &G,int semelimit,int gradlimit){
-    int i,j,curgrad,curnum,avenum=G.vexnum/semelimit;
+    int i,j,curgrad,curnum,avenum=G.vexnum/semelimit+(G.vexnum%semelimit!=0);
     Queue S;
     Vertex *p;
     Edge *q;
@@ -73,23 +74,23 @@ void TopoSortAve(Graph &G,int semelimit,int gradlimit){
 
 void TopoSortHea(Graph &G,int semelimit,int gradlimit){
     int i,j,curgrad;
-    Queue S;
+    Queue Q;
     Vertex *p;
     Edge *q;
-    IniQueue(S);
+    IniQueue(Q);
     for(i=0;i<G.vexnum;i++){
         if(!G.vet[i].indegree){
             G.vet[i].indegree--;
-            EnQueue(S,&G.vet[i]);
+            EnQueue(Q,&G.vet[i]);
         }
     }
     for(i=0;i<semelimit;i++){
         curgrad=0;
         printf("第%d学期:",i+1);
-        while(!QueueEmpty(S)){
-            Front(S,p);
+        while(!QueueEmpty(Q)){
+            Front(Q,p);
             if(curgrad+p->grade>gradlimit) break;
-            DeQueue(S,p);
+            DeQueue(Q,p);
             curgrad+=p->grade;
             q=p->firstout;
             while(q){
@@ -102,15 +103,15 @@ void TopoSortHea(Graph &G,int semelimit,int gradlimit){
         for(j=0;j<G.vexnum;j++){
             if(!G.vet[j].indegree){
                 G.vet[j].indegree--;
-                EnQueue(S,&G.vet[j]);
+                EnQueue(Q,&G.vet[j]);
             }
         }
     }
-    if(!QueueEmpty(S)) printf("我已经尽力排了,还有课没排上是你课程逻辑有问题~~\n");
+    if(!QueueEmpty(Q)) printf("我已经尽力排了,还有课没排上是你课程逻辑有问题~~\n");
 }
 
 void SolveGraph(Graph &G){
-    char line[100],temp[2],res[30],choice[101];
+    char line[100],temp[2],res[30],choice[10];
     int i,pos,flag,mainpos,semipos,curgrad,totgrad,semelimit,gradlimit,cournum;
     Edge *p;
     totgrad=0;
