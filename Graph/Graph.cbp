@@ -35,6 +35,9 @@
 		<Unit filename="BasicNode.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="Queue.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="Stack.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>

@@ -33,8 +33,8 @@ int Convert(char *num){
     return sum;
 }
 
-void TopoSortAve(Graph &G,int semelimit,int gradlimit,int avegrad){
-    int i,j,curgrad;
+void TopoSortAve(Graph &G,int semelimit,int gradlimit){
+    int i,j,curgrad,curnum,avenum=G.vexnum/semelimit;
     Queue S;
     Vertex *p;
     Edge *q;
@@ -46,13 +46,13 @@ void TopoSortAve(Graph &G,int semelimit,int gradlimit,int avegrad){
         }
     }
     for(i=0;i<semelimit;i++){
-        curgrad=0;
+        curgrad=0;curnum=0;
         printf("µÚ%dÑ§ÆÚ:",i+1);
-        while(!QueueEmpty(S)&&curgrad<avegrad){
+        while(!QueueEmpty(S)&&curnum<avenum){
             Front(S,p);
             if(curgrad+p->grade>gradlimit) break;
             DeQueue(S,p);
-            curgrad+=p->grade;
+            curgrad+=p->grade;curnum++;
             q=p->firstout;
             while(q){
                 G.vet[q->posh].indegree--;
@@ -180,7 +180,7 @@ void SolveGraph(Graph &G){
             continue;
         }
         else if(!strcmp(choice,"0")){
-            TopoSortAve(G,semelimit,gradlimit,totgrad/semelimit);
+            TopoSortAve(G,semelimit,gradlimit);
             return ;
         }
         else{
