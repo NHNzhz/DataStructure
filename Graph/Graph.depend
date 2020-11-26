@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1605768177 source:d:\19051135\c\c++\graph\main.cpp
+	"graphy.h"
+
+1606369611 d:\19051135\c\c++\graph\graphy.h
+	<cstring>
+	<cstdio>
+	"BasicNode.h"
+	"Stack.h"
+	"Queue.h"
+
+1605765837 d:\19051135\c\c++\graph\basicnode.h
+
+1605771751 d:\19051135\c\c++\graph\stack.h
+	"BasicNode.h"
+
+1606369001 d:\19051135\c\c++\graph\queue.h
+	"BasicNode.h"
+
