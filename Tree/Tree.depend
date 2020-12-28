@@ -1,17 +1,17 @@
 # depslib dependency file v1.0
-1605501650 source:d:\19051135\c\c++\tree\main.cpp
+1608905730 source:d:\19051135\c\c++\tree\main.cpp
 	<cstdio>
 	<cstring>
 	<cmath>
 	"tree.h"
 
-1605421741 d:\19051135\c\c++\tree\tree.h
+1608915301 d:\19051135\c\c++\tree\tree.h
 	"BasicNode.h"
 	"Stack.h"
 	<cstring>
 
-1605164077 d:\19051135\c\c++\tree\basicnode.h
+1608795565 d:\19051135\c\c++\tree\basicnode.h
 
-1605166552 d:\19051135\c\c++\tree\stack.h
+1608817378 d:\19051135\c\c++\tree\stack.h
 	"BasicNode.h"
 

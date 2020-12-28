@@ -3,12 +3,14 @@
 #include "BasicNode.h"
 #include "Stack.h"
 #include <cstring>
-#define maxsize 100
+#define maxsize 5000000
 
-void IniTree(TNode *T){
+//初始化二叉逻辑表达式树
+void IniTree(TNode* &T){
     T=NULL;
 }
 
+//销毁二叉逻辑表达式树
 void DestroyTree(TNode *T){
     if(T){
         DestroyTree(T->lc);
@@ -18,14 +20,17 @@ void DestroyTree(TNode *T){
     T=NULL;
 }
 
+//判断是否为表达式（包括0,1）
 bool IsParameter(char &c){
     return ((c>='A'&&c<='Z')||(c>='a'&&c<='z')||c=='0'||c=='1');
 }
 
+//判断是否为运算符
 bool IsOperator(char &c){
     return (c=='|')||(c=='&')||(c=='~')||(c=='(')||(c==')')||(c=='\n');
 }
 
+//运算符优先级比较
 int Compare(char t1,char t2){
     int res;
     switch(t2){
@@ -47,6 +52,7 @@ int Compare(char t1,char t2){
     return res;
 }
 
+//根据表达式构建二叉逻辑表达式树
 bool CreateTree(TNode* &root,char *exp){
     SqStack snode,soper;
     IniStack(snode,maxsize);IniStack(soper,maxsize);
@@ -72,7 +78,7 @@ bool CreateTree(TNode* &root,char *exp){
                 q->lc=q->rc=NULL;
                 Push(snode,p);
             }
-            if(StackEmpty(soper)&&cnt<strlen(exp)-1){
+            if(StackEmpty(soper)&&cnt<(int)strlen(exp)-1){
                 p=new TNode;
                 p->data=exp[cnt++];
                 p->lc=p->rc=NULL;
@@ -105,10 +111,25 @@ bool CreateTree(TNode* &root,char *exp){
         }
         else return false;
     }
-    if(Pop(snode,root)&&StackEmpty(snode)) return true;
-    else return false;
+    if(Pop(snode,root)&&StackEmpty(snode)){
+        DestroyStack(snode);
+        DestroyStack(soper);
+        return true;
+    }
+    else{
+        while(StackEmpty(snode)){
+            delete root;
+            Pop(snode,root);
+        }
+        delete root;
+        DestroyStack(snode);
+        DestroyStack(soper);
+        root=NULL;
+        return false;
+    }
 }
 
+//将数据域与tar值相等的结点的赋值域赋为val
 void ValueAssign(TNode *T,char tar,int val){
     if(T){
         if(T->data==tar) T->val=val;
@@ -119,6 +140,7 @@ void ValueAssign(TNode *T,char tar,int val){
     }
 }
 
+//令二叉树中所有结点的赋值域均被赋值，且根结点的赋值域即为当前赋值下表达式的值
 void Operation(TNode* &T){
     if(T){
         Operation(T->lc);
